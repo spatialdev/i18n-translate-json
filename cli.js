@@ -15,7 +15,7 @@ var argv = require("yargs")
     .example("$0 YOUR_API_KEY examples/ en nl,de", "Translate the file examples/en.json to examples/nl.json and examples/de.json")
     .argv;
 
-if (argv._.length < 4) {
+if (argv._.length < 3) {
   console.error("Usage: i18-translate-json <apiKey> <startDir> <sourceLang> <targetLang1,targetLang2,..>");
   return 1;
 }
@@ -36,7 +36,7 @@ if (startDir[startDir.length - 1] != "/") {
 var run = function() {
   path.resolve(__dirname, startDir);
 
-  translate.run(apiKey, startDir, sourceLang, targetLang, argv.includeHtml, function(err, result) {
+  translate.run(apiKey, startDir, sourceLang, targetLang, function(err, result) {
   
   	if (err) {
   		console.log("ERROR:");
@@ -51,21 +51,23 @@ var run = function() {
 // if target languages are not provided, get all languages supported by Google Translate
 if (!targetLang) {
   targetLang = [];
-  getJSON('https://translation.googleapis.com/language/translate/v2/languages?key=' + apiKey, function(error, response) {
+  getJSON('https://api.cognitive.microsofttranslator.com/languages?api-version=3.0', function(error, response) {
     if (error) {
   		console.log("ERROR:");
   		console.log(error);
   	  process.exit(0);
     }
     else {
-      var langs = response.data.languages;
+      var langs = Object.keys(response.translation);
       for (var i = 0; i < langs.length; i++) {
-        var lang = langs[i].language;
-        if (lang.length === 2) {
-          targetLang.push(lang);
+        if (langs[i].length === 2) {
+          targetLang.push(langs[i]);
         }
       }
-      run();
+      console.log(langs);
+      console.log('all these languages to choose from and you decided to use none?');
+      // run();
+      process.exit(0);
     }
   });
 }

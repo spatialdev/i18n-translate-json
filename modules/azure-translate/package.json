@@ -1,0 +1,16 @@
+{
+  "name": "azure-translate",
+  "version": "1.0.0",
+  "description": "Utility for translating with microsoft azure",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kyle Aig-Imoukhuede",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.4",
+    "request": "^2.88.2",
+    "underscore": "^1.13.4"
+  }
+}
