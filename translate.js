@@ -72,12 +72,16 @@ var run = function(apiKey, dir, sourceLanguage, languages, finish) {
       // find all paths of the object keys recursively
       var paths = traversed
         .paths()
-        .filter((p) => typeof traversed.get(p) === "string");
-      // get the leaves
-      var texts = traversed.reduce(function (acc, x) {
-        if (this.isLeaf) acc.push(x);
-        return acc;
-      }, []);
+        .filter((p) => {
+          const val = traversed.get(p);
+          return typeof val === "string" && val.length;
+        });
+
+        // get the leaves
+        var texts = traversed.reduce(function (acc, x) {
+          if (this.isLeaf && x?.length) acc.push(x);
+          return acc;
+        }, []);
       // translate the text
       translate(texts, languages, function (err, results) {
         // add new value to path
