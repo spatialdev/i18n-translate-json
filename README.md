@@ -1,30 +1,31 @@
 # i18n-translate-json
 
-Automatically translates node-i18n JSON files into different languages via Google Translate API.
+Automatically translates node-i18n JSON files into different languages via Microsoft Azure Translator API.
 
 ## Installation
 
+First, clone the repository locally. Pack the application and install it globally.
 ```
-npm install -g i18n-translate-json
+npm pack
+
+npm i -g i18n-translate-json-1.1.0.tgz
 ```
 
 ## Usage
 
-You need a [Google Translate API Key](https://cloud.google.com/translate/).
+You need a Microsoft Azure Translate API Key. The goal is to extend this module to work for other services.
 
 ```
-i18n-translate-json apiKey dir sourceLang (targetLang1,targetLang2,..)
+i18n-translate-json [apiKey] [locales dir] [source language dir] [output locales]
 ```
 
 e.g.
 
 ```
-i18n-translate-json iuOHAEbo9H788d34h93h4diouehIUHI locale/ en es,fr
+i18n-translate-json xxxxxxxxxxxxxxxxxxxx ./public/locales en es,ta,te
 ```
 
-This would translate all strings in `locale/en.json` (relative to current folder in the shell) from English to Spanish and French, based on the Google Translate API language codes.
-
-The target languages list is optional. When not present, it will be translated to all languages supported by Google Translate.
+This would translate all strings in `public/locales/en/*.json` (relative to current folder in the shell) from English to Spanish, Tamil, and Telegu based on the Microsoft Azure API language codes.
 
 ## Credits
 
