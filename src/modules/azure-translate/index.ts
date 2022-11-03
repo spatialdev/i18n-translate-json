@@ -4,7 +4,7 @@ var _ = require('underscore'),
 
 var endpoint = "https://api.cognitive.microsofttranslator.com/";
 
-var translateText = function (apiKey) {
+var translateText = function (apiKey: string) {
   return function (data, sourceLang, targetLang, done) {
     var requestData = {
       baseUrl: endpoint,
@@ -55,7 +55,7 @@ var globalResponseHandler = function(request, done) {
   };
 };
 
-module.exports = function(apiKey) {
+export = function(apiKey) {
 
   var translateFunc = translateText(apiKey);
 

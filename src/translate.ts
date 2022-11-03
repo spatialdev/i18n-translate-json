@@ -1,6 +1,6 @@
-var fs = require("fs");
-var traverse = require("traverse");
-var azure = require("./modules/azure-translate");
+import fs from 'fs';
+import traverse from 'traverse';
+import azure from './modules/azure-translate';
 
 var TRANSERR = {
   NOT_TRANSLATED: 1,
@@ -44,11 +44,11 @@ var run = function(apiKey, dir, sourceLanguage, languages, finish) {
         );
       }
 
-      data = data.toString();
+      const dataStr = data.toString();
 
       var parsed;
       try {
-        parsed = JSON.parse(data);
+        parsed = JSON.parse(dataStr);
       } catch (e) {
         return callback(
           {
@@ -139,12 +139,10 @@ var run = function(apiKey, dir, sourceLanguage, languages, finish) {
     }
 
     for (var i in files) {
-      processFile(files[i]);
+      processFile(files[i], null);
     }
   });
 };
 
 // EXPORTS
-module.exports = {
-  "run": run
-}
+export { run };

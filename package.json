@@ -5,7 +5,9 @@
   "version": "1.1.0",
   "private": false,
   "author": "Meedan",
-  "contributors": ["Steffion"],
+  "contributors": [
+    "Steffion"
+  ],
   "dependencies": {
     "async": "3.2.0",
     "get-json": "1.0.1",
@@ -14,9 +16,11 @@
     "yargs": "^15.3.1"
   },
   "devDependencies": {
+    "@types/node": "^18.11.9",
+    "glob": "*",
     "mocha": "*",
     "should": ">=13.2.3",
-    "glob": "*"
+    "typescript": "^4.8.4"
   },
   "scripts": {
     "test": "echo 'No tests yet' && exit 0"
